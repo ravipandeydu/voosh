@@ -1,8 +1,8 @@
-import express from "express";
+const express = require("express");
 const cors = require("cors");
 const { userRoutes } = require("./routes/user.route");
 const { orderRoutes } = require("./routes/order.route");
-
+import { Request, Response } from "express";
 const { connection } = require("./config/db");
 
 const app = express();
@@ -10,7 +10,7 @@ const PORT = 8080;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Home page");
 });
 
