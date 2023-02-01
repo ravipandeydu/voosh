@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Heading,
   Table,
   TableCaption,
@@ -13,6 +14,7 @@ import {
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getOrder } from "../Redux/order/order.actions";
 
 const Order = () => {
@@ -30,30 +32,32 @@ const Order = () => {
       <Heading>Order</Heading>
       {order.length > 0 ? (
         <Box>
-          {order?.map((ord) => (
-            <Box>
-              <TableContainer>
-                <Table variant="simple">
-                  <TableCaption>My Order</TableCaption>
-                  <Thead>
-                    <Tr>
-                      <Th>Phone Number</Th>
-                      <Th>Total</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    <Tr>
-                      <Td>{ord.phone_number}</Td>
-                      <Td>{ord.sub_total}</Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
-              </TableContainer>
-            </Box>
-          ))}
+          <TableContainer>
+            <Table variant="simple">
+              <Thead>
+                <Tr>
+                  <Th>Phone Number</Th>
+                  <Th>Total</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {order?.map((ord) => (
+                  <Tr>
+                    <Td>{ord.phone_number}</Td>
+                    <Td>{ord.sub_total}</Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
         </Box>
       ) : (
-        <Box>You have no order</Box>
+        <Box>
+          You have no order{" "}
+          <Button>
+            <Link to={"/addorder"}>Click Here to Add Order</Link>
+          </Button>
+        </Box>
       )}
     </Box>
   );

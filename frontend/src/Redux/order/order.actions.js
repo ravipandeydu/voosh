@@ -26,7 +26,7 @@ export const getOrder = (token, id) => async (dispatch) => {
   }
 };
 
-export const postEvents = (token, event) => async (dispatch) => {
+export const postOrder = (token, event) => async (dispatch) => {
   dispatch({ type: POST_ORDER_LOADING });
   try {
     await axios.post("http://localhost:8080/add-order", event, {

@@ -15,17 +15,13 @@ import {
   AlertTitle,
   Heading,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { userData } from "../Redux/auth/auth.actions";
 import { useNavigate } from "react-router-dom";
 import { signupSuccess } from "../Redux/auth/auth.actions";
 
 const SignUp = () => {
-  const { loading, error, errormsg, successmsg } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, error } = useSelector((state) => state.auth);
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState();
@@ -35,7 +31,11 @@ const SignUp = () => {
   function handleSignUp(e) {
     e.preventDefault();
     try {
-      dispatch(signupSuccess({ name, phone_number: phone, password }));
+      dispatch(signupSuccess({ name, phone_number: phone, password })).then(
+        () => {
+          navigate("/login");
+        }
+      );
     } catch (e) {
       console.log(e);
     }
@@ -76,22 +76,7 @@ const SignUp = () => {
           )}
         </CardFooter>
       </Card>
-      {error ? (
-        <Alert status="error">
-          <AlertIcon />
-          <AlertTitle>{errormsg}</AlertTitle>
-        </Alert>
-      ) : (
-        ""
-      )}
-      {successmsg ? (
-        <Alert status="success">
-          <AlertIcon />
-          <AlertTitle>{successmsg}</AlertTitle>
-        </Alert>
-      ) : (
-        ""
-      )}
+      {error ? <Box>Something Went Wrong</Box> : ""}
     </Box>
   );
 };

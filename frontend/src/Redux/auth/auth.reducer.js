@@ -11,10 +11,8 @@ import {
 let initialState = {
   loading: false,
   error: false,
-  errormsg: "",
   isAuth: false,
   token: localStorage.getItem("token") || "",
-  successmsg: "",
   user: JSON.parse(localStorage.getItem("user")) || {},
 };
 
@@ -42,9 +40,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
         loading: false,
         error: false,
         isAuth: true,
-        errormsg: "",
         token: localStorage.getItem("token"),
-        successmsg: payload.message,
         user: JSON.parse(localStorage.getItem("user")),
       };
     }
@@ -72,7 +68,6 @@ export const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         error: true,
-        errormsg: payload,
       };
     }
     case AUTH_SIGNUP_SUCCESS: {
@@ -81,8 +76,6 @@ export const authReducer = (state = initialState, { type, payload }) => {
         loading: false,
         error: false,
         isAuth: false,
-        errormsg: "",
-        successmsg: payload,
       };
     }
     default: {
