@@ -3,7 +3,7 @@
 ## Backend
 
 - To start Backend - npm start
-- Add User - http://localhost:8080/add-user
-- Login User - http://localhost:8080/login-user
-- Add Order - http://localhost:8080/add-order
-- Get Order - `http://localhost:8080/get-order?user_id=${userId}`
+- Add User - https://vooshbyravi.onrender.com/add-user
+- Login User - https://vooshbyravi.onrender.com/login-user
+- Add Order - https://vooshbyravi.onrender.com/add-order
+- Get Order - `https://vooshbyravi.onrender.com/get-order?user_id=${userId}`

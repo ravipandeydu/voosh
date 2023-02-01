@@ -12,7 +12,7 @@ export const getOrder = (token, id) => async (dispatch) => {
   dispatch({ type: GET_ORDER_LOADING });
   try {
     let response = await axios.get(
-      `http://localhost:8080/get-order?user_id=${id}`,
+      `https://vooshbyravi.onrender.com/get-order?user_id=${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ export const getOrder = (token, id) => async (dispatch) => {
 export const postOrder = (token, event) => async (dispatch) => {
   dispatch({ type: POST_ORDER_LOADING });
   try {
-    await axios.post("http://localhost:8080/add-order", event, {
+    await axios.post("https://vooshbyravi.onrender.com/add-order", event, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

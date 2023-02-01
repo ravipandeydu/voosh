@@ -17,15 +17,17 @@ const handleUser = (payload) => ({
 export const loginSuccess = (creds) => async (dispatch) => {
   dispatch({ type: AUTH_LOGIN_LOADING });
   try {
-    await axios.post("http://localhost:8080/login-user", creds).then((data) => {
-      console.log(data);
-      if (data.data.error) {
-        dispatch({ type: AUTH_LOGIN_ERROR, payload: data.data.error });
-      } else {
-        dispatch({ type: AUTH_LOGIN_SUCCESS, payload: data.data });
-      }
-      return data;
-    });
+    await axios
+      .post("https://vooshbyravi.onrender.com/login-user", creds)
+      .then((data) => {
+        console.log(data);
+        if (data.data.error) {
+          dispatch({ type: AUTH_LOGIN_ERROR, payload: data.data.error });
+        } else {
+          dispatch({ type: AUTH_LOGIN_SUCCESS, payload: data.data });
+        }
+        return data;
+      });
   } catch (e) {
     dispatch({ type: AUTH_LOGIN_ERROR });
   }
@@ -34,15 +36,17 @@ export const loginSuccess = (creds) => async (dispatch) => {
 export const signupSuccess = (creds) => async (dispatch) => {
   dispatch({ type: AUTH_SIGNUP_LOADING });
   try {
-    await axios.post("http://localhost:8080/add-user", creds).then((data) => {
-      console.log(data);
-      if (data.data.error) {
-        dispatch({ type: AUTH_SIGNUP_ERROR, payload: data.data.error });
-      } else {
-        dispatch({ type: AUTH_SIGNUP_SUCCESS, payload: data.data.message });
-      }
-      return data;
-    });
+    await axios
+      .post("https://vooshbyravi.onrender.com/add-user", creds)
+      .then((data) => {
+        console.log(data);
+        if (data.data.error) {
+          dispatch({ type: AUTH_SIGNUP_ERROR, payload: data.data.error });
+        } else {
+          dispatch({ type: AUTH_SIGNUP_SUCCESS, payload: data.data.message });
+        }
+        return data;
+      });
   } catch (e) {
     dispatch({ type: AUTH_SIGNUP_ERROR, payload: "Server Error" });
   }
