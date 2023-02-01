@@ -2,11 +2,17 @@ const express = require("express");
 const cors = require("cors");
 const { userRoutes } = require("./routes/user.route");
 const { orderRoutes } = require("./routes/order.route");
+
 const { connection } = require("./config/db");
+
 const app = express();
 const PORT = 8080;
 
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Home page");
+});
 
 app.use(cors());
 
